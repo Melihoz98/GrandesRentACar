@@ -9,11 +9,14 @@ namespace GrandesRentACar.DataAccess
     public class CarAccess : ICarAccess
     {
         // You may inject the connection string via constructor, or set it directly here
-        private readonly string connectionString = "YourConnectionStringHere";
+        private readonly string _connectionString;
 
-        public CarAccess()
+        public CarAccess(IConfiguration configuration)
         {
+            _connectionString = configuration.GetConnectionString("DefaultConnection")
+                                ?? throw new InvalidOperationException("Database connection string is not configured.");
         }
+
 
         public async Task<List<Car>> GetAllCars()
         {
@@ -22,7 +25,7 @@ namespace GrandesRentACar.DataAccess
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
                     await connection.OpenAsync(); // Open the connection
 

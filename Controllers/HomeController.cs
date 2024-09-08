@@ -1,3 +1,4 @@
+using GrandesRentACar.BusinessLogic;
 using GrandesRentACar.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -8,14 +9,24 @@ namespace GrandesRentACar.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ICarData _carData;
+        
+
+        public HomeController(ILogger<HomeController> logger, ICarData carData)
         {
             _logger = logger;
-        }
+            _carData = carData;
+        } 
 
-        public IActionResult Index()
+        public async Task <IActionResult> Index()
         {
-            return View();
+            List<Car> cars;
+            cars = await _carData.GetAllCars();
+
+
+
+
+            return View(cars);
         }
 
         public IActionResult Privacy()

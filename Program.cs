@@ -1,6 +1,15 @@
+using GrandesRentACar.BusinessLogic;
+using GrandesRentACar.DataAccess;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllersWithViews();
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+
+builder.Services.AddScoped<ICarData, CarDataLogic>();
+builder.Services.AddScoped<ICarAccess, CarAccess>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

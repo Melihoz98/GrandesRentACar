@@ -1,8 +1,19 @@
-﻿@{
+﻿
+
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Sen kiasd asd asd msn</h1>
 
+    
+   
 </div>
+@foreach (var car in Model)
+{
+
+	<td>@car.ModelName</td>
+    <td>@car.ModelYear</td>
+}
