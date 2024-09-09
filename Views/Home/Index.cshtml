@@ -5,7 +5,7 @@
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
 
 <div class="container mt-5">
-    <h1 class="display-4 text-center mb-4">Select Your Cool Car</h1>
+    <h1 class="display-4 text-center mb-4">Choose the date for renting a car</h1>
 
     <div class="row mb-4">
         <div class="col-md-12">
@@ -20,11 +20,12 @@
                         <input type="date" class="form-control" id="endDate" name="endDate" required />
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Check Availability</button>
+                <button type="submit" class="btn btn-primary">Check Availability </button>
             </form>
         </div>
     </div>
 
+    <h2 class="text-center">Our cars</h2>
     <div class="row">
         @foreach (var car in Model)
         {
