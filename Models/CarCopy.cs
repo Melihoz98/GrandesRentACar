@@ -19,6 +19,7 @@
 
         public int CarCopyID { get; set; }
         public decimal LicenseNumber { get; set; }
-        public int CarID { get; set; } 
+        public int CarID { get; set; }
+
     }
 }
