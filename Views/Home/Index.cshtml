@@ -3,28 +3,38 @@
 }
 
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/HomeStyle.css" rel="stylesheet" />
 
 <div class="container mt-5">
-    <h1 class="display-4 text-center mb-4">Choose the date for renting a car</h1>
-
-    <div class="row mb-4">
-        <div class="col-md-12">
+    <!-- Date Selection Section -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-8">
             <form asp-action="AvailableCars" method="get">
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="startDate">Start Date</label>
-                        <input type="date" class="form-control" id="startDate" name="startDate" required />
+                <div class="form-row d-flex align-items-center">
+                    <!-- Pick-up Date -->
+                    <div class="form-group col-md-3">
+                        <label for="startDate" class="sr-only">Afhentning</label>
+                        <input type="date" class="form-control date-input" id="startDate" name="startDate" placeholder="Afhentning" required />
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="endDate">End Date</label>
-                        <input type="date" class="form-control" id="endDate" name="endDate" required />
+
+                    <!-- Drop-off Date -->
+                    <div class="form-group col-md-3">
+                        <label for="endDate" class="sr-only">Aflevering</label>
+                        <input type="date" class="form-control date-input" id="endDate" name="endDate" placeholder="Aflevering" required />
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-group col-md-4">
+                        <button type="submit" class="btn btn-search btn-block">Find en lejebil</button>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Check Availability </button>
             </form>
         </div>
     </div>
+</div>
 
+
+    <!-- Cars Section -->
     <h2 class="text-center">Our cars</h2>
     <div class="row">
         @foreach (var car in Model)
@@ -34,9 +44,8 @@
                     <a href="/Home/Details/@car.CarID">
                         <img src="~/img/@car.ImageUrl" class="card-img-top img-fluid" alt="@car.ModelName" style="height: 250px; object-fit: cover;">
                     </a>
-
                     <div class="card-body">
-                        <h5 class="card-title">@car.ModelName (@car.ModelYear)</h5>
+                        <h5 class="card-title modelyear-title">@car.ModelName (@car.ModelYear)</h5>
                         <p class="card-text">
                             <strong>Fuel Type:</strong> @car.FuelType<br />
                             <strong>Gear Type:</strong> @car.GearType<br />
@@ -51,6 +60,8 @@
         }
     </div>
 </div>
+
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>

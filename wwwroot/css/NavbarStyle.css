@@ -1,0 +1,114 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Navbar background with green and black gradient */
+.navbar {
+    background: linear-gradient(135deg, #2c3e50, #32a852); /* green to black gradient */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* subtle shadow for floating effect */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Brand styling */
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    display: flex; /* Flexbox to align logo and text side by side */
+    align-items: center; /* Vertically align items */
+}
+
+    .navbar-brand .logo {
+        height: 80px; /* Set a fixed height for the logo */
+        width: 80px; /* Set the width equal to the height */
+        border-radius: 50%; /* Make the logo circular */
+        object-fit: cover; /* Ensure the image fits well within the circle */
+        margin-right: 20px; /* Add some space between the logo and text */
+    }
+
+    .navbar-brand .brand-name {
+        font-family: 'Poppins', sans-serif;
+        color: #fff;
+        transition: color 0.3s ease-in-out;
+    }
+
+    .navbar-brand:hover .brand-name {
+        color: #f1c40f; /* gold hover effect */
+    }
+
+/* Navbar items */
+.nav-link {
+    font-family: 'Poppins', sans-serif; /* Apply Poppins font to menu items */
+    font-size: 1.1rem; /* Font size */
+    padding: 10px 15px;
+    color: #fff; /* Text color (white) */
+    position: relative;
+    transition: all 0.2s ease-in-out;
+}
+
+    /* Hover effect on text (no box) */
+    .nav-link:hover {
+        color: #f1c40f; /* gold hover effect */
+    }
+
+    /* Optional: Underline effect on hover */
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #f1c40f; /* gold underline */
+        transition: all 0.3s ease-in-out;
+    }
+
+    .nav-link:hover::after {
+        width: 100%; /* Adds a gold underline effect */
+    }
+
+    /* Active link highlight */
+    .nav-link.active {
+        color: #f1c40f; /* active link highlighted in gold */
+    }
+
+/* Button styling */
+.navbar-toggler {
+    border: none;
+    outline: none;
+}
+
+    .navbar-toggler:hover {
+        background-color: rgba(255, 255, 255, 0.2); /* subtle hover effect */
+    }
+
+.navbar-toggler-icon {
+    color: #fff;
+}
+
+.navbar-nav .nav-item {
+    margin: 0 15px; /* Adds 15px spacing between the menu items */
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+    }
+
+    .nav-link {
+        font-family: 'Poppins', sans-serif; /* Apply Poppins font to menu items */
+        font-size: 1.1rem; /* Font size */
+        padding: 10px 15px;
+        color: #fff; /* Text color (white) */
+        position: relative;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .navbar-brand {
+        margin-right: 20px; /* Adds space between the logo and the menu */
+    }
+
+    .logo {
+        height: 80px; /* You can adjust the height as needed */
+        width: auto; /* Maintain the aspect ratio */
+    }
+}
