@@ -7,13 +7,14 @@ using GrandesRentACar.DataAccess;
 using GrandesRentACar.BusinessLogic;
 using System.Diagnostics;
 using System.Linq;
+using Newtonsoft.Json;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly ICarData _carData;
     private readonly ICarCopiesData _carCopiesData;
-
+    private const string ReservationSessionKey = "ReservationSession";
     public HomeController(ILogger<HomeController> logger, ICarData carData, ICarCopiesData carCopiesData)
     {
         _logger = logger;
@@ -34,8 +35,17 @@ public class HomeController : Controller
     [HttpGet]
     public async Task<IActionResult> AvailableCars(DateTime startDate, DateTime endDate)
     {
+        ClearReservation();
         try
         {
+            var reservation = new Reservation
+            {
+                StartDate = startDate,
+                EndDate = endDate,
+                CarCopyID = null,
+                CustomerID = null
+            };
+            SetReservationInSession(reservation);
             var availableCarCopies = await _carCopiesData.GetAvailableCars(startDate, endDate);
 
            
@@ -60,6 +70,26 @@ public class HomeController : Controller
             return View("Error");
         }
     }
+
+    private void SetReservationInSession(Reservation reservation)
+    {
+        // Serialize the reservation object to a JSON string
+        string reservationJson = JsonConvert.SerializeObject(reservation);
+        HttpContext.Session.SetString(ReservationSessionKey, reservationJson);
+    }
+
+    private Reservation GetReservationFromSession()
+    {
+        var reservationJson = HttpContext.Session.GetString(ReservationSessionKey);
+        if (string.IsNullOrEmpty(reservationJson))
+        {
+            return null;  // No reservation found in session
+        }
+
+        // Deserialize the JSON string back to a Reservation object
+        return JsonConvert.DeserializeObject<Reservation>(reservationJson);
+    }
+
     public async Task<IActionResult> Details(int id)
     {
         try
@@ -80,6 +110,11 @@ public class HomeController : Controller
         }
     }
 
+    public void ClearReservation()
+    {
+        HttpContext.Session.Remove(ReservationSessionKey);
+       
+    }
 
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
