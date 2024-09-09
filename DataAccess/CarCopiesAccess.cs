@@ -21,13 +21,13 @@ namespace GrandesRentACar.DataAccess
         {
             var availableCars = new List<CarCopy>();
             string queryString = @"
-        SELECT CarCopyID, LicenseNumber, CarID
-        FROM CarsCopies
-        WHERE CarCopyID NOT IN (
-            SELECT CarCopyID
-            FROM Reservations
-            WHERE (@StartDate <= EndDate AND @EndDate >= StartDate)
-        )";
+                SELECT CarCopyID, LicenseNumber, CarID
+                FROM CarsCopies
+                WHERE CarCopyID NOT IN (
+                    SELECT CarCopyID
+                    FROM Reservations
+                    WHERE (@StartDate <= EndDate AND @EndDate >= StartDate)
+                )";
 
             try
             {
@@ -48,7 +48,7 @@ namespace GrandesRentACar.DataAccess
                                 {
                                     CarCopyID = reader.GetInt32(0),
                                     LicenseNumber = reader.GetDecimal(1),
-                                    CarID = new Car { CarID = reader.GetInt32(2) }
+                                    CarID = reader.GetInt32(2) // Get the CarID as an int
                                 };
 
                                 availableCars.Add(carCopy);
@@ -64,6 +64,5 @@ namespace GrandesRentACar.DataAccess
 
             return availableCars;
         }
-
     }
 }
