@@ -60,6 +60,25 @@ public class HomeController : Controller
             return View("Error");
         }
     }
+    public async Task<IActionResult> Details(int id)
+    {
+        try
+        {
+            var car = await _carData.GetCarById(id);
+
+            if (car == null)
+            {
+                return NotFound();
+            }
+
+            return View("~/Views/CarDetails/Index.cshtml", car);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An error occurred while fetching car details.");
+            return View("Error");
+        }
+    }
 
 
 
