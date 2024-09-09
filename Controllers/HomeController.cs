@@ -36,27 +36,26 @@ public class HomeController : Controller
     {
         try
         {
-            // Fetch available car copies based on the selected dates
             var availableCarCopies = await _carCopiesData.GetAvailableCars(startDate, endDate);
 
-            // Fetch all cars to get their details
+           
             var allCars = await _carData.GetAllCars();
 
-            // Create a list to hold the cars with available copies
+           
             var carsWithAvailableCopies = new List<Car>();
 
-            // Get a list of CarIDs that have available copies
+          
             var availableCarIds = availableCarCopies.Select(cc => cc.CarID).Distinct();
 
-            // Filter all cars to include only those with available copies
+           
             carsWithAvailableCopies = allCars.Where(car => availableCarIds.Contains(car.CarID)).ToList();
 
-            // Pass the list of cars with available copies to the view in AvailableCars folder
-            return View("~/Views/AvailableCars/Index.cshtml", carsWithAvailableCopies); // Specify the full path to the view file
+           
+            return View("~/Views/AvailableCars/Index.cshtml", carsWithAvailableCopies); 
         }
         catch (Exception ex)
         {
-            // Log the exception and show an error page or message
+            
             _logger.LogError(ex, "An error occurred while fetching available cars.");
             return View("Error");
         }

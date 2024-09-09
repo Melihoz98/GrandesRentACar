@@ -7,9 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Confirmation\" />
-    <Folder Include="Views\CarInfo\" />
-    <Folder Include="Views\AllCarsCarInfo\" />
+    <Compile Remove="Views\AllCarsCarInfo\**" />
+    <Compile Remove="Views\CarInfo\**" />
+    <Compile Remove="Views\Confirmation\**" />
+    <Content Remove="Views\AllCarsCarInfo\**" />
+    <Content Remove="Views\CarInfo\**" />
+    <Content Remove="Views\Confirmation\**" />
+    <EmbeddedResource Remove="Views\AllCarsCarInfo\**" />
+    <EmbeddedResource Remove="Views\CarInfo\**" />
+    <EmbeddedResource Remove="Views\Confirmation\**" />
+    <None Remove="Views\AllCarsCarInfo\**" />
+    <None Remove="Views\CarInfo\**" />
+    <None Remove="Views\Confirmation\**" />
   </ItemGroup>
 
   <ItemGroup>

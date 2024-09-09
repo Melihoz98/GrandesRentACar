@@ -48,7 +48,7 @@ namespace GrandesRentACar.DataAccess
                                 {
                                     CarCopyID = reader.GetInt32(0),
                                     LicenseNumber = reader.GetDecimal(1),
-                                    CarID = reader.GetInt32(2) // Get the CarID as an int
+                                    CarID = reader.GetInt32(2) 
                                 };
 
                                 availableCars.Add(carCopy);

@@ -19,6 +19,6 @@
 
         public int CarCopyID { get; set; }
         public decimal LicenseNumber { get; set; }
-        public int CarID { get; set; } // This should be an int
+        public int CarID { get; set; } 
     }
 }
