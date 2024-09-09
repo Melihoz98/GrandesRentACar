@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Views\AvailableCars\" />
     <Folder Include="Views\Confirmation\" />
     <Folder Include="Views\CarInfo\" />
     <Folder Include="Views\AllCarsCarInfo\" />

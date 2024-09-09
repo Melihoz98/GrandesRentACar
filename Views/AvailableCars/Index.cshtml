@@ -1,0 +1,50 @@
+﻿@model IEnumerable<GrandesRentACar.Models.CarCopy>
+
+@{
+    ViewData["Title"] = "Available Cars";
+}
+
+<!-- Bootstrap or any other CSS framework for styling -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container mt-5">
+    <h1 class="display-4 text-center mb-4">Available Cars</h1>
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var carCopy in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <!-- Car card -->
+                    <div class="card shadow-sm">
+                        <!-- Car image as a button -->
+                        <a href="/Car/Details/@carCopy.CarID">
+                            <img src="~/img/@carCopy.CarID.ImageUrl" class="card-img-top img-fluid" alt="Car Image" style="height: 250px; object-fit: cover;">
+                        </a>
+
+                        <div class="card-body">
+                            <h5 class="card-title">@carCopy.CarID.ModelName (@carCopy.CarID.ModelYear)</h5>
+                            <p class="card-text">
+                                <strong>Fuel Type:</strong> @carCopy.CarID.FuelType<br />
+                                <strong>Gear Type:</strong> @carCopy.CarID.GearType<br />
+                                <strong>Daily Price:</strong> $@carCopy.CarID.DailyPrice
+                            </p>
+                            <p class="card-text text-muted">@carCopy.CarID.Description</p>
+
+                            <!-- Button to book the car or view more details -->
+                            <a href="/Car/Details/@carCopy.CarID" class="btn btn-primary btn-block">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p class="text-center">No cars available for the selected dates.</p>
+        }
+    </div>
+</div>
+
+<!-- Optional JS for Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>

@@ -4,7 +4,7 @@
     {
 
 
-        CarCopy(int carCopyID, decimal licenseNumber, Car carID)
+        public CarCopy(int carCopyID, decimal licenseNumber, Car carID)
         {
             CarCopyID = carCopyID;
             LicenseNumber = licenseNumber;
@@ -12,13 +12,13 @@
 
         }
 
-        CarCopy(decimal licenseNumber, Car carID)
+        public CarCopy(decimal licenseNumber, Car carID)
         {
             LicenseNumber = licenseNumber;
             CarID = carID;
         }
 
-        CarCopy()
+        public CarCopy()
         {
 
         }

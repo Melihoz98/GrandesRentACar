@@ -10,6 +10,8 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services.AddScoped<ICarData, CarDataLogic>();
 builder.Services.AddScoped<ICarAccess, CarAccess>();
+builder.Services.AddScoped<ICarCopiesData, CarCopiesDataLogic>();
+builder.Services.AddScoped<ICarCopiesAccess, CarCopiesAccess>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

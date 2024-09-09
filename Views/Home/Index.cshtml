@@ -7,9 +7,28 @@
 
 <div class="container mt-5">
     <h1 class="display-4 text-center mb-4">Select Your Cool Car</h1>
-    <div class="row">
 
-        <!-- Loop through the cars and display them -->
+    <!-- Date selection form -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <form asp-action="AvailableCars" method="get">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="startDate">Start Date</label>
+                        <input type="date" class="form-control" id="startDate" name="startDate" required />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="endDate">End Date</label>
+                        <input type="date" class="form-control" id="endDate" name="endDate" required />
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Check Availability</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loop through the cars and display them -->
+    <div class="row">
         @foreach (var car in Model)
         {
             <div class="col-md-4 mb-4">

@@ -1,43 +1,56 @@
-using GrandesRentACar.BusinessLogic;
-using GrandesRentACar.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using GrandesRentACar.Models;
+using GrandesRentACar.DataAccess;
+using GrandesRentACar.BusinessLogic;
 using System.Diagnostics;
 
-namespace GrandesRentACar.Controllers
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    private readonly ILogger<HomeController> _logger;
+    private readonly ICarData _carData;
+    private readonly ICarCopiesData _carCopiesData;
+
+    public HomeController(ILogger<HomeController> logger, ICarData carData, ICarCopiesData carCopiesData)
     {
-        private readonly ILogger<HomeController> _logger;
+        _logger = logger;
+        _carData = carData;
+        _carCopiesData = carCopiesData;
+    }
 
-        private readonly ICarData _carData;
-        
+    public async Task<IActionResult> Index()
+    {
+        List<Car> cars = await _carData.GetAllCars();
+        return View(cars);
+    }
 
-        public HomeController(ILogger<HomeController> logger, ICarData carData)
+    public IActionResult Privacy()
+    {
+        return View();
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> AvailableCars(DateTime startDate, DateTime endDate)
+    {
+        // Fetch available cars based on the selected dates
+        var availableCars = await _carCopiesData.GetAvailableCars(startDate, endDate);
+
+        // Check if availableCars has data
+        if (availableCars == null || !availableCars.Any())
         {
-            _logger = logger;
-            _carData = carData;
-        } 
-
-        public async Task <IActionResult> Index()
-        {
-            List<Car> cars;
-            cars = await _carData.GetAllCars();
-
-
-
-
-            return View(cars);
+            // Optional: Log or handle the case where no cars are available
+            // ViewBag.Message = "No cars available for the selected dates.";
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        return View("Index", availableCars); // Use "Index" to match the view file name
+    }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
