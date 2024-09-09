@@ -17,6 +17,11 @@ namespace GrandesRentACar.BusinessLogic
             return await _carAccess.GetAllCars();
         }
 
+        public async Task<Car> GetCarById(int carId)  // Add this method
+        {
+            return await _carAccess.GetCarById(carId);
+        }
+
     }
 
     

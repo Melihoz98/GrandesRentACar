@@ -18,7 +18,7 @@
                     <!-- Car card -->
                     <div class="card shadow-sm">
                         <!-- Car image as a button -->
-                        <a href="/Car/Details/@car.CarID">
+                        <a asp-action="Index" asp-controller="SelectedCar" asp-route-carId="@car.CarID">
                             <img src="~/img/@car.ImageUrl" class="card-img-top img-fluid" alt="Car Image" style="height: 250px; object-fit: cover;">
                         </a>
 
@@ -31,8 +31,8 @@
                             </p>
                             <p class="card-text text-muted">@car.Description</p>
 
-                            <!-- Button to book the car or view more details -->
-                            <a href="/Car/Details/@car.CarID" class="btn btn-primary btn-block">View Details</a>
+                            <!-- Button to view the selected car -->
+                            <a asp-action="Index" asp-controller="SelectedCar" asp-route-carId="@car.CarID" class="btn btn-primary btn-block">View Details</a>
                         </div>
                     </div>
                 </div>
