@@ -5,23 +5,22 @@
     padding: 20px;
     border-radius: 40px;
     background-color: #fff;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Date Input Styling */
 .date-input {
     border-radius: 50px; /* Rounded edges */
-    padding: 12px 20px;
+    padding: 8px 20px;
     font-size: 1.1rem;
-    border: 1px solid #ddd; /* Light border */
-    background-color: #f8f9fa; /* Light background for clarity */
+    border: 1px solid #000000;
+    background-color: #f1c40f; /* Light background for clarity */
     text-align: center; /* Center text */
     width: 100%; /* Ensure it fills the container */
     transition: border-color 0.3s ease, background-color 0.3s ease; /* Smooth transition */
 }
 
     .date-input:focus {
-        border-color: #007bff; /* Blue border on focus */
+        border-color: #f1c40f; /* Blue border on focus */
         background-color: #fff; /* White background on focus */
         outline: none; /* Remove default outline */
     }
@@ -36,9 +35,7 @@
         background-color: #e9f7ff; /* Lighter background when clicked */
     }
 
-    .date-input:hover {
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Slight shadow on hover */
-    }
+
 
 /* Location Input Styling */
 .location-input {
