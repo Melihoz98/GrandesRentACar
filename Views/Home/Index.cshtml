@@ -2,36 +2,58 @@
     ViewData["Title"] = "Car Selection";
 }
 
+<!-- External Resources -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
 <link href="~/css/HomeStyle.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<!-- Flatpickr CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
-<div class="container mt-5">
-    <!-- Date Selection Section -->
-    <div class="row justify-content-center mb-5">
-        <div class="col-md-8">
-            <form asp-action="AvailableCars" method="get">
-                <div class="form-row d-flex align-items-center">
-                    <!-- Pick-up Date -->
-                    <div class="form-group col-md-3">
-                        <label for="startDate" class="sr-only">Afhentning</label>
-                        <input type="date" class="form-control date-input" id="startDate" name="startDate" placeholder="Afhentning" required />
-                    </div>
+<!-- Date Selection Section -->
+<div class="row justify-content-center mb-9">
+    <div class="col-md-8">
+        <form asp-action="AvailableCars" method="get">
+            <div class="form-row d-flex align-items-center">
 
-                    <!-- Drop-off Date -->
-                    <div class="form-group col-md-3">
-                        <label for="endDate" class="sr-only">Aflevering</label>
-                        <input type="date" class="form-control date-input" id="endDate" name="endDate" placeholder="Aflevering" required />
-                    </div>
-
-                    <!-- Submit Button -->
-                    <div class="form-group col-md-4">
-                        <button type="submit" class="btn btn-search btn-block">Find en lejebil</button>
-                    </div>
+                <!-- Pick-up Date (Afhentning) -->
+                <div class="form-group col-md-3">
+                    <input type="text" class="form-control date-input" id="startDate" name="startDate" placeholder="Afhentning" />
                 </div>
-            </form>
-        </div>
+
+                <!-- Drop-off Date (Aflevering) -->
+                <div class="form-group col-md-3">
+                    <input type="text" class="form-control date-input" id="endDate" name="endDate" placeholder="Aflevering" />
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-group col-md-3">
+                    <button type="submit" class="btn btn-search btn-block">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
+
+<!-- Flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    // Ensure the DOM is fully loaded before initializing Flatpickr
+    window.onload = function () {
+        flatpickr("#startDate", {
+            altInput: true,  // Display date in nice format for user
+            altFormat: "m-d-y", // Format shown to the user (mm-dd-yy)
+            dateFormat: "Y-m-d" // Format sent to the server (yyyy-MM-dd)
+        });
+
+        flatpickr("#endDate", {
+            altInput: true,
+            altFormat: "m-d-y", // Format shown to the user (mm-dd-yy)
+            dateFormat: "Y-m-d" // Format sent to the server (yyyy-MM-dd)
+        });
+    };
+</script>
 
 
     <!-- Cars Section -->

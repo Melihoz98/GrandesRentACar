@@ -1,4 +1,5 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
 /* Container and Layout */
 .container {
     padding: 20px;
@@ -7,16 +8,39 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Search Icon Inside the Input */
-.search-icon {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #999;
-    font-size: 1.2rem;
+/* Date Input Styling */
+.date-input {
+    border-radius: 50px; /* Rounded edges */
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border: 1px solid #ddd; /* Light border */
+    background-color: #f8f9fa; /* Light background for clarity */
+    text-align: center; /* Center text */
+    width: 100%; /* Ensure it fills the container */
+    transition: border-color 0.3s ease, background-color 0.3s ease; /* Smooth transition */
 }
 
+    .date-input:focus {
+        border-color: #007bff; /* Blue border on focus */
+        background-color: #fff; /* White background on focus */
+        outline: none; /* Remove default outline */
+    }
+
+    .date-input::placeholder {
+        color: #aaa; /* Light grey placeholder */
+        font-weight: 500; /* Slightly bold placeholder */
+        font-size: 0.95rem; /* Slightly smaller placeholder */
+    }
+
+    .date-input:active {
+        background-color: #e9f7ff; /* Lighter background when clicked */
+    }
+
+    .date-input:hover {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Slight shadow on hover */
+    }
+
+/* Location Input Styling */
 .location-input {
     padding-left: 40px; /* Space for the icon */
     border-radius: 50px;
@@ -31,30 +55,25 @@
         outline: none;
     }
 
-/* Date Input Styling */
-.date-input {
-    border-radius: 50px;
-    padding: 10px 20px;
-    font-size: 1.1rem;
-    border: 1px solid #ddd;
-    width: 100%;
-    text-align: center;
-    transition: border-color 0.3s ease;
+/* Search Icon Inside the Input */
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 1.2rem;
 }
 
-    .date-input:focus {
-        border-color: #007bff;
-        outline: none;
-    }
-
+/* Search Button Styling */
 .btn-search {
     background-color: #b02c1d;
     border-color: #000000;
-    padding: 12px 30px;
+    padding: 8px 30px;
     border-radius: 50px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;  
     font-family: 'Poppins', sans-serif;
     color: white;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
     .btn-search:hover {
@@ -71,10 +90,10 @@
 .btn-primary {
     background-color: #b02c1d;
     border-color: #000000;
-    padding: 12px 30px;
+    padding: 8px 30px;
     border-radius: 50px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
     font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
     .btn-primary:hover {
@@ -87,20 +106,21 @@
         outline: none;
     }
 
-/* Align submit button to the right */
+/* Align items in the form row */
 .form-row {
     display: flex;
-    gap: 15px; /* Spacing between inputs */
+    gap: 15px; /* Adds spacing between inputs and buttons */
     align-items: center;
     justify-content: space-between;
 }
 
+/* Align submit button to the right inside form-group */
 .form-group.col-md-2.text-end {
     display: flex;
-    justify-content: flex-end; /* Aligns the button to the right */
+    justify-content: flex-end;
 }
 
-/* General Form Styling */
+/* General Typography */
 h1 {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
@@ -108,3 +128,8 @@ h1 {
     color: #333;
     letter-spacing: 1px;
 }
+
+
+
+
+
