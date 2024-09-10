@@ -1,5 +1,62 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model GrandesRentACar.Models.Reservation
+
 @{
+    ViewData["Title"] = "Checkout Details";
 }
+
+<div class="container mt-5">
+    <h1 class="display-4 text-center mb-4">Checkout Details</h1>
+
+    @if (Model != null)
+    {
+        <div class="card">
+            <div class="card-header">
+                <h2>Reservation Summary</h2>
+            </div>
+            <div class="card-body">
+                <h5>Customer Information</h5>
+                <p>
+                    <strong>First Name:</strong> @Model.CustomerID.FirstName<br />
+                    <strong>Last Name:</strong> @Model.CustomerID.LastName<br />
+                    <strong>Address:</strong> @Model.CustomerID.Address<br />
+                    <strong>City:</strong> @Model.CustomerID.City<br />
+                    <strong>Email:</strong> @Model.CustomerID.Email<br />
+                </p>
+
+                <h5>Car Information</h5>
+                <p>
+                    <strong>Car Model:</strong> @Model.CarID.ModelName<br />
+                    <strong>Model Year:</strong> @Model.CarID.ModelYear<br />
+                    <strong>Fuel Type:</strong> @Model.CarID.FuelType<br />
+                    <strong>Gear Type:</strong> @Model.CarID.GearType<br />
+                    <strong>Daily Price:</strong> $@Model.CarID.DailyPrice<br />
+                    <strong>Description:</strong> @Model.CarID.Description
+                </p>
+
+                <h5>Reservation Details</h5>
+                <p>
+                    <strong>Reservation ID:</strong> @Model.ReservationID<br />
+                    <strong>Start Date:</strong> @Model.StartDate.ToShortDateString()<br />
+                    <strong>End Date:</strong> @Model.EndDate.ToShortDateString()
+                </p>
+
+                <h5>Total Price Calculation</h5>
+                @* Assuming you might have a way to calculate the total price based on daily price and reservation duration *@
+                @* Example Calculation: *@
+                @{
+                    var days = (Model.EndDate - Model.StartDate).Days;
+                    var totalPrice = days * Model.CarID.DailyPrice;
+                }
+                <p>
+                    <strong>Total Price:</strong> $@totalPrice
+                </p>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning text-center">
+            No reservation details found in the session.
+        </div>
+    }
+</div>

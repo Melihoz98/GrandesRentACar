@@ -43,7 +43,8 @@ public class HomeController : Controller
                 StartDate = startDate,
                 EndDate = endDate,
                 CarCopyID = null,
-                CustomerID = null
+                CustomerID = null,
+                CarID = null
             };
             SetReservationInSession(reservation);
             var availableCarCopies = await _carCopiesData.GetAvailableCars(startDate, endDate);

@@ -13,7 +13,12 @@ builder.Services.AddScoped<ICarAccess, CarAccess>();
 builder.Services.AddScoped<ICarCopiesData, CarCopiesDataLogic>();
 builder.Services.AddScoped<ICarCopiesAccess, CarCopiesAccess>();
 builder.Services.AddControllersWithViews();
-builder.Services.AddSession();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Adjust session timeout as needed
+    options.Cookie.HttpOnly = true; // Ensure cookie is only accessible via HTTP
+    options.Cookie.IsEssential = true; // Make the session cookie essential
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

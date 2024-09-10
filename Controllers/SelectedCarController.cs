@@ -20,27 +20,42 @@ namespace GrandesRentACar.Controllers
             _logger = logger;
             _carData = carData;
         }
-
         [HttpGet]
         public async Task<IActionResult> Index(int carId)
         {
-            try
-            {
-                var car = await _carData.GetCarById(carId);
+            HttpContext.Session.Remove("CarID");
+            var reservation = GetReservationFromSession();
 
-                if (car == null)
+            if (reservation != null)
+            {
+                try
                 {
-                    return NotFound();
-                }
+                    var car = await _carData.GetCarById(carId);
 
-                return View("Index", car); 
+                    if (car == null)
+                    {
+                        return NotFound();
+                    }
+
+                    reservation.CarID = car; // Assign the full Car object
+                    SetReservationInSession(reservation); // Save the updated reservation in session
+
+                    return View("Index", car);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "An error occurred while fetching the car details.");
+                    return View("Error");
+                }
             }
-            catch (Exception ex)
+            else
             {
-                _logger.LogError(ex, "An error occurred while fetching the car details.");
-                return View("Error");
+                // Handle the case where there is no reservation in the session
+                _logger.LogWarning("No reservation found in session.");
+                return RedirectToAction("Error"); // Redirect to an error page or handle accordingly
             }
         }
+
         [HttpPost]
         public async Task<IActionResult> AddCarToReservation(int carId)
         {
@@ -77,6 +92,34 @@ namespace GrandesRentACar.Controllers
             return StatusCode(404); // Not found
         }
 
+        [HttpPost]
+        public IActionResult BookCar(string FirstName, string LastName, string Address, string City, string Email)
+        {
+            HttpContext.Session.Remove("FirstName");
+            HttpContext.Session.Remove("LastName");
+            HttpContext.Session.Remove("Address");
+            HttpContext.Session.Remove("City");
+            HttpContext.Session.Remove("Email");
+            // Retrieve the reservation from the session
+            var reservation = GetReservationFromSession();
+
+
+            var customer = new Customer
+            {
+                FirstName = FirstName,
+                LastName = LastName,
+                Address = Address,
+                City = City,
+                Email = Email
+            };
+            reservation.CustomerID = customer;
+
+            // Store the updated reservation in the session
+            SetReservationInSession(reservation);
+
+            // Redirect or respond with success after storing the reservation
+            return RedirectToAction("Index", "Checkout");
+        }
 
 
 

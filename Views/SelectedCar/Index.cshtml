@@ -40,8 +40,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form asp-action="BookCar" asp-controller="Car" method="post">
-                    <input type="hidden" name="CarID" value="@Model.CarID" />
+                <form asp-action="BookCar" asp-controller="SelectedCar" method="post">
                     <div class="form-group">
                         <label for="firstName">First Name</label>
                         <input type="text" class="form-control" id="firstName" name="FirstName" required />
@@ -64,6 +63,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
+
             </div>
         </div>
     </div>
