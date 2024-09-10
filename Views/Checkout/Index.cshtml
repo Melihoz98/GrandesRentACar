@@ -50,6 +50,12 @@
                 <p>
                     <strong>Total Price:</strong> $@totalPrice
                 </p>
+
+                <!-- Payment Button -->
+                <form action="@Url.Action("Pay", "Checkout")" method="post">
+                    <input type="hidden" name="totalPrice" value="@totalPrice" />
+                    <button type="submit" class="btn btn-primary">Pay with PayPal</button>
+                </form>
             </div>
         </div>
     }
