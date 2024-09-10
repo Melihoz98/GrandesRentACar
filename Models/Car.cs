@@ -38,6 +38,8 @@
         public string? Description { get; set; }    
         public string? GearType { get; set; }       
         public decimal? DailyPrice { get; set; }     
-        public string? ImageUrl { get; set; }        
+        public string? ImageUrl { get; set; }
+        public ICollection<CarCopy> CarCopies { get; set; } // Add this if it's not there already
+
     }
 }

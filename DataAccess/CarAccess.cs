@@ -59,6 +59,47 @@ namespace GrandesRentACar.DataAccess
 
             return cars;
         }
+        public async Task<List<CarCopy>> GetAvailableCarCopiesForCar(int carId)
+        {
+            var carCopies = new List<CarCopy>();
+            string queryString = @"SELECT CarCopyID, LicenseNumber, CarID 
+                           FROM CarsCopies 
+                           WHERE CarID = @CarID"; // Modify the query if you have any additional conditions to check availability
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    await connection.OpenAsync();
+
+                    using (SqlCommand command = new SqlCommand(queryString, connection))
+                    {
+                        command.Parameters.AddWithValue("@CarID", carId);
+
+                        using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                        {
+                            while (await reader.ReadAsync())
+                            {
+                                var carCopy = new CarCopy
+                                {
+                                    CarCopyID = reader.GetInt32(0),
+                                    LicenseNumber = reader.GetDecimal(1),
+                                    CarID = reader.GetInt32(2)
+                                };
+
+                                carCopies.Add(carCopy);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while fetching car copies: {ex.Message}");
+            }
+
+            return carCopies;
+        }
 
         public async Task<Car> GetCarById(int carId)
         {
