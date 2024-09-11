@@ -11,7 +11,8 @@
 
 <!-- Date Selection Section -->
 <div class="row justify-content-center mb-9">
-    <div class="col-md-8">
+    <div class="col-md-8 mx-auto custom-width-form">
+        <!-- Added custom class here -->
         <form asp-action="AvailableCars" method="get">
             <div class="form-row d-flex align-items-center">
 
@@ -56,25 +57,25 @@
 </script>
 
 
-    <!-- Cars Section -->
-    <h2 class="text-center">Our cars</h2>
+<!-- Cars Section -->
+<div class="container-cars">
     <div class="row">
         @foreach (var car in Model)
         {
-            <div class="col-md-4 mb-4">
-                <div class="card shadow-sm">
+            <div class="col-6 col-md-4 col-lg-2 mb-4">
+                <!-- Adjusted for a more responsive grid -->
+                <div class="card shadow-sm h-100">
                     <a href="/Home/Details/@car.CarID">
-                        <img src="~/img/@car.ImageUrl" class="card-img-top img-fluid" alt="@car.ModelName" style="height: 250px; object-fit: cover;">
+                        <img src="~/img/@car.ImageUrl" class="card-img-top img-fluid" alt="@car.ModelName" style="height: 200px; object-fit: cover; border-radius: 10px 10px 0 0;">
                     </a>
-                    <div class="card-body">
+                    <div class="card">
                         <h5 class="card-title modelyear-title">@car.ModelName (@car.ModelYear)</h5>
-                        <p class="card-text">
+                        <p class="card-text mb-2">
                             <strong>Fuel Type:</strong> @car.FuelType<br />
                             <strong>Gear Type:</strong> @car.GearType<br />
                             <strong>Daily Price:</strong> $@car.DailyPrice
                         </p>
                         <p class="card-text text-muted">@car.Description</p>
-
                         <a href="/Home/Details/@car.CarID" class="btn btn-primary btn-block">View Details</a>
                     </div>
                 </div>
@@ -82,6 +83,7 @@
         }
     </div>
 </div>
+
 
 
 
