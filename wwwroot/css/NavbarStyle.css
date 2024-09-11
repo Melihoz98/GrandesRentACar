@@ -2,10 +2,13 @@
 
 /* Navbar background with green and black gradient */
 .navbar {
-    background: linear-gradient(135deg, #2c3e50, #32a852); /* green to black gradient */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* subtle shadow for floating effect */
-    transition: all 0.3s ease-in-out;
+    background: linear-gradient(135deg, #2c3e50, #32a852) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease-in-out !important;
+    height: 50px !important;
+    margin-top: 15px !important;
 }
+
 
 /* Brand styling */
 .navbar-brand {
@@ -88,6 +91,10 @@
     margin: 0 15px; /* Adds 15px spacing between the menu items */
 }
 
+
+
+
+
 /* Mobile view */
 @media (max-width: 768px) {
     .navbar {
@@ -112,3 +119,5 @@
         width: auto; /* Maintain the aspect ratio */
     }
 }
+
+

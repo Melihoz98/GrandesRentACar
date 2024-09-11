@@ -20,3 +20,7 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.container-bigbrother {
+    max-width: 3000px; /* or any value you prefer */
+}

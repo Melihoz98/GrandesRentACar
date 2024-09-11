@@ -7,6 +7,11 @@
     background-color: #fff;
 }
 
+.container-search {
+    max-width: 2000px; /* Adjust this value to your preference */
+    margin: 0 auto; /* Center the container */
+}
+
 /* Date Input Styling */
 .date-input {
     border-radius: 50px; /* Rounded edges */
@@ -126,7 +131,42 @@ h1 {
     letter-spacing: 1px;
 }
 
+.custom-width-form {
+    max-width: 700px; /* You can adjust this to your preferred width */
+    width: 100%; /* Ensure it takes up full width inside the max-width */
+    margin: 0 auto; /* Center the form horizontally */
+    margin-top: 35px;
+}
 
 
+/* Custom fluid container */
+.container-cars {
+    width: 100%; /* Take full width */
+    max-width: 1400px; /* Limit the max width to 1400px or as needed */
+    margin: 0 auto; /* Center the container */
+    padding: 0 15px; /* Optional padding for spacing */
+    margin-top: 35px
+}
+
+/* Cards Styling */
+.card {
+    border-color:black;
+    border: 10px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 500px;
+    margin-left: 10px;
+   
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+/* Image styling */
+.card-img-top {
+    border-radius: 100px 100px 0 0;
+}
 
 
