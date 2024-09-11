@@ -29,7 +29,6 @@ builder.Services.AddSession(options =>
 });
 
 // Configure PayPal settings
-builder.Services.Configure<PayPalSettings>(builder.Configuration.GetSection("PayPal"));
 
 // Register other services if needed (e.g., PayPalService)
 // builder.Services.AddScoped<PayPalService>();
