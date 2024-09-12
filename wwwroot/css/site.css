@@ -22,5 +22,7 @@ body {
 }
 
 .container-bigbrother {
-    max-width: 3000px; /* or any value you prefer */
+    max-width: 100%; /* You can override this if needed */
+    padding-left: 0px;
+    padding-right: 0px;
 }

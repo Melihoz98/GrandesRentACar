@@ -62,21 +62,20 @@
     <div class="row">
         @foreach (var car in Model)
         {
-            <div class="col-6 col-md-4 col-lg-2 mb-4">
-                <!-- Adjusted for a more responsive grid -->
-                <div class="card shadow-sm h-100">
+            <div class="col-6 col-md-4 col-lg-3 mb-4">
+                <!-- Adjusted grid for consistency -->
+                <div class="card shadow-sm h-100 custom-card">
                     <a href="/Home/Details/@car.CarID">
-                        <img src="~/img/@car.ImageUrl" class="card-img-top img-fluid" alt="@car.ModelName" style="height: 200px; object-fit: cover; border-radius: 10px 10px 0 0;">
+                        <img src="~/img/@car.ImageUrl" class="card-img-top img-fluid custom-card-img" alt="@car.ModelName">
                     </a>
-                    <div class="card">
+                    <div class="card-body d-flex flex-column">
                         <h5 class="card-title modelyear-title">@car.ModelName (@car.ModelYear)</h5>
                         <p class="card-text mb-2">
                             <strong>Fuel Type:</strong> @car.FuelType<br />
-                            <strong>Gear Type:</strong> @car.GearType<br />
-                            <strong>Daily Price:</strong> $@car.DailyPrice
+                            <strong>Gear Type:</strong> @car.GearType
                         </p>
-                        <p class="card-text text-muted">@car.Description</p>
-                        <a href="/Home/Details/@car.CarID" class="btn btn-primary btn-block">View Details</a>
+                        <p class="price-tag">DKK @car.DailyPrice</p> <!-- Updated price tag -->
+                        <a href="/Home/Details/@car.CarID" class="btn btn-primary mt-auto btn-block">View Details</a>
                     </div>
                 </div>
             </div>
