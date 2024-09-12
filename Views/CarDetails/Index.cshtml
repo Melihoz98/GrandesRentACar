@@ -1,31 +1,66 @@
-﻿@model GrandesRentACar.Models.Car
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Araç Detayları</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <style>
+        /* Font family applied to individual elements */
+        .btn-custom, .img-fluid, .font-weight-bold, .lead, .modal-title, .close, .form-control, .form-group label, .btn-primary {
+            font-family: 'Poppins', sans-serif;
+        }
 
-@{
-    ViewData["Title"] = "Car Details";
-}
+        .btnBack {
+            background-color: white;
+            color: darkgreen;
+            border: 2px solid green;
+            font-family: 'Poppins', sans-serif;
+        }
 
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+            .btnBack:hover {
+                background-color: white;
+                color: darkgreen;
+                border: 2px solid green;
+            }
 
-<div class="container mt-5">
-    <h1 class="display-4 text-center mb-4">Car Details</h1>
+            .btnBack:focus, .btnBack:active {
+                box-shadow: none;
+            }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Araç Görseli -->
+            <div class="col-md-6 mb-4">
+                <img src="~/img/@Model.ImageUrl" class="img-fluid rounded shadow" alt="@Model.ModelName" style="height: 400px; object-fit: cover;">
+            </div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <img src="~/img/@Model.ImageUrl" class="img-fluid" alt="@Model.ModelName" style="height: 400px; object-fit: cover;">
+            <!-- Araç Detayları -->
+            <div class="col-md-6 mb-4">
+                <h2 class="font-weight-bold">@Model.ModelName (@Model.ModelYear)</h2>
+                <hr />
+                <p class="lead">
+                    <strong><i class="fas fa-gas-pump"></i> Yakıt Türü:</strong> @Model.FuelType<br />
+                    <strong><i class="fas fa-cogs"></i> Vites Türü:</strong> @Model.GearType<br />
+                    <strong><i class="bi bi-cash"></i> Günlük Fiyat:</strong> @Model.DailyPrice<br />
+                    <br /> <br />
+                    <strong>Açıklama:</strong> @Model.Description
+                </p>
+            </div>
         </div>
-        <div class="col-md-6">
-            <h2>@Model.ModelName (@Model.ModelYear)</h2>
-            <p><strong>Fuel Type:</strong> @Model.FuelType</p>
-            <p><strong>Gear Type:</strong> @Model.GearType</p>
-            <p><strong>Daily Price:</strong> $@Model.DailyPrice</p>
-            <p><strong>Description:</strong> @Model.Description</p>
+
+        <!-- Geri dön Button -->
+        <div class="text-center mt-4">
+            <a href="/Home/Index" class="btn btnBack">Geri dön</a>
         </div>
     </div>
 
-    <div class="mt-4">
-        <a href="/Home/Index" class="btn btn-primary">Back to home page</a>
-    </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+</body>
+</html>
