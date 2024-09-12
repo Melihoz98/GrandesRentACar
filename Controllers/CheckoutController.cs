@@ -42,8 +42,9 @@ namespace GrandesRentACar.Controllers
 
         public IActionResult Success()
         {
+            var confirmedDetails = GetReservationFromSession();
             // Handle payment success
-            return View("PaymentSuccess");
+            return View("PaymentSuccess", confirmedDetails);
         }
 
         public IActionResult Cancel()
