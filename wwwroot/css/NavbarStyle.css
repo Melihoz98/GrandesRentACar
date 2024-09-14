@@ -1,1 +1,10 @@
-﻿
+﻿/* Responsive adjustments */
+@media (max-width: 991px) {
+    .navbar-nav .nav-item {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .navbar-nav .nav-link {
+        margin-left: 0;
+    }
