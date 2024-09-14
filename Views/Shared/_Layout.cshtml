@@ -18,11 +18,9 @@
         @Html.Partial("_Navbar")
     </header>
 
-    <div class="container-bigbrother">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <main>
+        @RenderBody() <!-- Main content -->
+    </main>
 
     <footer>
         @Html.Partial("_Footer")

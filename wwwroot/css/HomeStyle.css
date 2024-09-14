@@ -107,6 +107,9 @@
     gap: 15px; /* Adds spacing between inputs and buttons */
     align-items: center;
     justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 25px;
+    margin-right: 25px;
 }
 
 /* Align submit button to the right inside form-group */
@@ -124,102 +127,51 @@ h1 {
     letter-spacing: 1px;
 }
 
-.custom-width-form {
-    max-width: 700px; /* You can adjust this to your preferred width */
-    width: 100%; /* Ensure it takes up full width inside the max-width */
-    margin: 0 auto; /* Center the form horizontally */
-    margin-top: 35px;
+/* Extra small devices (up to 576px) */
+.custom-col-12 {
+    width: 100%; /* Full width (12/12) */
 }
 
-
-/* Custom fluid container */
-.container-cars {
-    max-width: 100% !important; /* Override any shrinking */
-    width: 100% !important; /* Ensure full width is used */
-    padding-left: 0px;
-    padding-right: 0px;
-}
-
-
-.row {
-    margin-left: 0;
-    margin-right: 0;
-    justify-content: space-between; /* Spread out the cards */
-}
-
-.col-6, .col-md-4, .col-lg-2 {
-    display: flex;
-    flex-direction: column;
-}
-
-
-.custom-card {
-    background-color: #2c3e50; /* mørkegrøn */
-    border-radius: 10px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-    .custom-card:hover {
-        transform: translateY(-5px); /* Subtle hover effect */
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-.custom-card-img {
-    width: 100%; /* Always fill the width of the container */
-    height: auto; /* Allow the height to adjust based on the width */
-    min-height: 300px; /* Set a minimum height for consistency */
-    max-height: 250px; /* Set a maximum height to ensure uniformity */
-    object-fit: cover; /* Cover the entire container, cropping if necessary */
-    border-radius: 10px 10px 0 0;
-}
-
-
-
-.modelyear-title {
-    color: #fff;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-
-.card-body {
-    background-color: #2c3e50;
-    color: white;
-    padding: 15px;
-}
-
-/* Ensures cards are uniformly sized */
-.row > .col-6, .col-md-4, .col-lg-2 {
-    padding: 10px; /* Adds a bit of padding between cards */
-}
-
-.card-text strong {
-    color: #32a852; /* Light green for emphasis */
-}
-
-
-.card-text {
-    color: #b0c4de; /* Softened text color for secondary details */
-}
-
-/* Custom button styling */
-.btn-custom {
-    background-color: #b02c1d; /* Logo red */
-    color: white;
-    border: none;
-    transition: background-color 0.3s ease;
-    border-radius: 10px;
-}
-
-    .btn-custom:hover {
-        background-color: darkred; /* Darken red on hover */
-    }
-
-/* Grid responsiveness */
-@media (max-width: 768px) {
-    .custom-card-img {
-        height: 150px;
+/* Small devices (576px and up) */
+@media (min-width: 576px) {
+    .custom-col-sm-8 {
+        width: 66.66667%; /* 8/12 width */
     }
 }
+
+/* Medium devices (768px and up) */
+@media (min-width: 768px) {
+    .custom-col-md-6 {
+        width: 50%; /* 6/12 width */
+    }
+}
+
+/* Large devices (992px and up) */
+@media (min-width: 992px) {
+    .custom-col-lg-4 {
+        width: 33.33333%; /* 4/12 width */
+    }
+}
+
+/* Extra-large devices (1200px and up) */
+@media (min-width: 1200px) {
+    .custom-col-xl-4 {
+        width: 33.33333%; /* 4/12 width */
+    }
+}
+
+/* Custom for very large devices (1600px and up) - 5 columns */
+@media (min-width: 1600px) and (max-width: 2099px) {
+    .custom-col-xxxl-5 {
+        width: 20%; /* 5 columns (5/12 width) */
+    }
+}
+
+/* Custom for very large devices (2100px and up) - 6 columns */
+@media (min-width: 2100px) {
+    .custom-col-xxxl-6 {
+        width: 16.66667%; /* 6 columns (6/12 width) */
+    }
+}
+
 
