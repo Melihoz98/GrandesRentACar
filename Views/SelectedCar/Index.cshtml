@@ -1,100 +1,151 @@
-﻿@model GrandesRentACar.Models.Car
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Araç Detayları</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
 
-@{
-    ViewData["Title"] = "Araç Detayları";
-}
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <style>
+        /* Font family applied to individual elements */
+        .btn-custom, .img-fluid, .font-weight-bold, .lead, .modal-title, .close, .form-control, .form-group label, .btn-primary {
+            font-family: 'Poppins', sans-serif;
+        }
 
-<!-- Bootstrap ve FontAwesome ikonlar için -->
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+        .btn-custom {
+            background-color: transparent !important;
+            color: green !important;
+            border: 2px solid green !important;
+            position: relative;
+            overflow: hidden;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 16px;
+        }
 
-<div class="container mt-5">
-    <div class="row">
-        <!-- Araç Görseli -->
-        <div class="col-md-6 mb-4">
-            <img src="~/img/@Model.ImageUrl" class="img-fluid rounded shadow" alt="@Model.ModelName" style="height: 400px; object-fit: cover;">
-        </div>
+            .btn-custom i {
+                margin-right: 5px;
+            }
 
-        <!-- Araç Detayları -->
-        <div class="col-md-6 mb-4">
-            <h2 class="font-weight-bold">@Model.ModelName (@Model.ModelYear)</h2>
-            <hr />
-            <p class="lead">
-                <strong><i class="fas fa-gas-pump"></i> Yakıt Türü:</strong> @Model.FuelType<br />
-                <strong><i class="fas fa-cogs"></i> Vites Türü:</strong> @Model.GearType<br />
-                <strong><i class="fas fa-dollar-sign"></i> Günlük Fiyat:</strong> $@Model.DailyPrice<br />
-                <strong><i class="fas fa-info-circle"></i> Açıklama:</strong> @Model.Description
-            </p>
+        .submitBtn{
+            background-color: green;
+        }
+        .submitBtn:hover{
+            background-color: green;
+        }
 
-            <!-- Araç rezervasyon formu -->
-            <form id="bookingForm" asp-controller="SelectedCar" asp-action="AddCarToReservation" method="post">
-                <input type="hidden" name="carId" value="@Model.CarID" />
-                <button type="button" class="btn btn-primary btn-lg btn-block shadow" onclick="submitBookingForm()">
-                    <i class="fas fa-car"></i> Bu Aracı Kirala
-                </button>
-            </form>
-        </div>
-    </div>
-</div>
+        .modal-content {
+            border: 3px solid darkgreen; /* Adjust the border size and color as needed */
+            border-radius: 20px; /* Adjust the value to make the corners more round */
+        }
 
-<!-- Rezervasyon Modal -->
-<div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="bookingModalLabel">Bu Aracı Kirala</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Kapat">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+        .close {
+            color: darkgreen; /* Sets the close button color to dark green */
+            opacity: 1; /* Makes the color fully visible */
+        }
+
+            .close:hover {
+                color: green; /* Optional: change color on hover */
+            }
+
+            .modal-title{
+            color: #003300;
+            }
+     
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Araç Görseli -->
+            <div class="col-md-6 mb-4">
+                <img src="~/img/@Model.ImageUrl" class="img-fluid rounded shadow" alt="@Model.ModelName" style="height: 400px; object-fit: cover;">
             </div>
-            <div class="modal-body">
-                <form asp-action="BookCar" asp-controller="SelectedCar" method="post">
-                    <div class="form-group">
-                        <label for="firstName"><i class="fas fa-user"></i> Ad</label>
-                        <input type="text" class="form-control" id="firstName" name="FirstName" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName"><i class="fas fa-user"></i> Soyad</label>
-                        <input type="text" class="form-control" id="lastName" name="LastName" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="address"><i class="fas fa-home"></i> Adres</label>
-                        <input type="text" class="form-control" id="address" name="Address" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="city"><i class="fas fa-city"></i> Şehir</label>
-                        <input type="text" class="form-control" id="city" name="City" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="email"><i class="fas fa-envelope"></i> E-posta</label>
-                        <input type="email" class="form-control" id="email" name="Email" required />
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">
-                        <i class="fas fa-check-circle"></i> Gönder
+
+            <!-- Araç Detayları -->
+            <div class="col-md-6 mb-4">
+                <h2 class="font-weight-bold">@Model.ModelName (@Model.ModelYear)</h2>
+                <hr />
+                <p class="lead">
+                    <strong><i class="fas fa-gas-pump"></i> Yakıt Türü:</strong> @Model.FuelType<br />
+                    <strong><i class="fas fa-cogs"></i> Vites Türü:</strong> @Model.GearType<br />
+                    <strong><i class="bi bi-cash"></i> Günlük Fiyat:</strong> @Model.DailyPrice<br />
+                    <br /> <br />
+                    <strong> Açıklama:</strong> @Model.Description
+                </p>
+
+                <!-- Araç rezervasyon formu -->
+                <form id="bookingForm" asp-controller="SelectedCar" asp-action="AddCarToReservation" method="post">
+                    <input type="hidden" name="carId" value="@Model.CarID" />
+                    <button type="button" class="btn btn-custom btn-lg btn-block shadow" onclick="submitBookingForm()">
+                        <i class="fas fa-car"></i> Bu Aracı Kirala
                     </button>
                 </form>
             </div>
         </div>
     </div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <!-- Rezervasyon Modal -->
+    <div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookingModalLabel">Bu Aracı Kirala</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Kapat">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form asp-action="BookCar" asp-controller="SelectedCar" method="post">
+                        <div class="form-group">
+                            <label for="firstName"> Ad</label>
+                            <input type="text" class="form-control" id="firstName" name="FirstName" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName"> Soyad</label>
+                            <input type="text" class="form-control" id="lastName" name="LastName" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="address"> Adres</label>
+                            <input type="text" class="form-control" id="address" name="Address" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="city"> Şehir</label>
+                            <input type="text" class="form-control" id="city" name="City" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email"> E-posta</label>
+                            <input type="email" class="form-control" id="email" name="Email" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary submitBtn btn-block">
+                            <i class="fas fa-check-circle"></i> Gönder
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<script>
-    function submitBookingForm() {
-        $.ajax({
-            url: '@Url.Action("AddCarToReservation", "SelectedCar")',
-            type: 'POST',
-            data: $('#bookingForm').serialize(),
-            success: function () {
-                $('#bookingModal').modal('show');
-            },
-            error: function (xhr, status, error) {
-                console.error('Hata detayları:', error);
-                alert('Araç rezervasyonu sırasında bir hata oluştu.');
-            }
-        });
-    }
-</script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script>
+        function submitBookingForm() {
+            $.ajax({
+                url: '@Url.Action("AddCarToReservation", "SelectedCar")',
+                type: 'POST',
+                data: $('#bookingForm').serialize(),
+                success: function () {
+                    $('#bookingModal').modal('show');
+                },
+                error: function (xhr, status, error) {
+                    console.error('Hata detayları:', error);
+                    alert('Araç rezervasyonu sırasında bir hata oluştu.');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

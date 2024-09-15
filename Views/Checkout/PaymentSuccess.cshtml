@@ -1,10 +1,77 @@
-﻿@{
+﻿@model GrandesRentACar.Models.Reservation
+@{
     ViewData["Title"] = "Payment Success";
 }
 
-<div class="container mt-5">
-    <h1 class="display-4 text-center mb-4">Payment Successful</h1>
-    <div class="alert alert-success text-center">
-        Your payment was successful. Thank you for your purchase!
+<div class="container success-container mt-5">
+    <h1 class="display-4 mb-4 success-header">Ödeme Başarılı</h1>
+    <div class="alert alert-success text-center success-message">
+        Ödemeniz başarılı oldu. <br />
+        Satın aldığınız için teşekkür ederiz @Model.CustomerID.FirstName @Model.CustomerID.LastName! <br /> <br />
+        Onayı @Model.CustomerID.Email adresine gönderdik.
     </div>
+
+    <a href="/" class="btn btn-success go-home-btn">Ana Sayfaya Git</a>
 </div>
+
+
+<style>
+    /* Container styling */
+    .success-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    /* Header styling */
+    .success-header {
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Success message styling */
+    .success-message {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        font-family: 'Poppins', sans-serif;
+        margin-bottom: 20px;
+        background-color: white;
+        border: black;
+    }
+
+    /* Button styling */
+    .go-home-btn {
+        display: inline-block;
+        font-size: 1.1rem;
+        font-weight: 600;
+        padding: 10px 20px;
+        border: 2px solid transparent;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .go-home-btn:hover {
+        border-color: #28a745;
+        transform: scale(1.05);
+    }
+
+    /* Animation */
+    @@keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
