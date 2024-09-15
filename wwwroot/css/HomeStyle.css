@@ -11,28 +11,28 @@
     padding: 8px 20px;
     font-size: 1.1rem;
     border: 1px solid #000000;
-    background-color: #f1c40f; /* Light background for clarity */
+    /*background-color: #f1c40f; /* Light background for clarity */
     text-align: center; /* Center text */
     width: 100%; /* Ensure it fills the container */
     transition: border-color 0.3s ease, background-color 0.3s ease; /* Smooth transition */
 }
 
-    .date-input:focus {
-        border-color: #f1c40f; /* Blue border on focus */
-        background-color: #fff; /* White background on focus */
-        outline: none; /* Remove default outline */
-    }
-
+    /*.date-input:focus {
+        border-color: #f1c40f; 
+        background-color: #fff;
+        outline: none; 
+    } */
+    
     .date-input::placeholder {
-        color: #aaa; /* Light grey placeholder */
+     color: #aaa;
         font-weight: 500; /* Slightly bold placeholder */
         font-size: 0.95rem; /* Slightly smaller placeholder */
     }
 
-    .date-input:active {
-        background-color: #e9f7ff; /* Lighter background when clicked */
+   /*te-input:active {
+        background-color: #e9f7ff; /* Lighter background when clicked 
     }
-
+       */
 
 
 /* Location Input Styling */
